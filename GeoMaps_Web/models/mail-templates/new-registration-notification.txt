@@ -1,0 +1,8 @@
+Hallo Admin
+
+#DATE#
+Ein  Benutzer hat sich soeben registriert:
+#USERNAME# 
+
+-Freundliche Grüsse, GeoMaps Web
+geomapsweb@c-dev.ch

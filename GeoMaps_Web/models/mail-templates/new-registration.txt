@@ -1,0 +1,7 @@
+Hallo #USERNAME#
+
+Danke für die Registrierung auf #WEBSITENAME#
+#ACTIVATION-MESSAGE
+
+-Freundliche Grüsse, GeoMaps Web
+geomapsweb@c-dev.ch

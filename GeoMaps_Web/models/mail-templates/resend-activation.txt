@@ -1,0 +1,10 @@
+Hallo #USERNAME#
+
+Wir haben eine Aktivierungs-Anfrage für deinen Account bekommen. Bitte klicke den Link unten um den Account zu aktivieren.
+
+Solltest Du keine Aktivierung angeforder habe, kannst Du diese Nachricht ignorieren.
+
+#ACTIVATION-URL
+
+-Freundliche Grüsse, GeoMaps Web
+geomapsweb@c-dev.ch

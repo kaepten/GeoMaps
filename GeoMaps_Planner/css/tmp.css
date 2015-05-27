@@ -1,0 +1,45 @@
+/* Created by TopStyle Trial - www.topstyle4.com */
+ .tbody {
+            /*font-family: 'Open Sans', sans-serif;*/
+            font-family: 'Yanone Kaffeesatz', sans-serif;
+            font-weight: 400;
+            font-size: 1em;
+        }
+
+        .rotate-north {
+            position: absolute;
+            bottom: 60px;
+            left: 8px;
+            background: rgba(255,255,255,0.8);
+            padding: 2px;
+        }
+        .ol-touch .rotate-north {
+            top: 80px;
+        }
+        .rotate-north a {
+            display: block;
+            color: black;
+            font-size: 12px;
+            margin: 1px;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 2px;
+            height: 22px;
+            width: 150px;
+            background: #7b99bf;
+        }
+        .ol-touch .rotate-north a {
+            font-size: 20px;
+            height: 30px;
+            width: 30px;
+            line-height: 28px;
+        }
+        .rotate-north a:hover {
+            background: rgba(0,60,136,0.7);
+        }
+
+        .geoLayers {
+            background: #ebebeb;
+            padding: 10px;
+            font-size: 12px;
+        }
