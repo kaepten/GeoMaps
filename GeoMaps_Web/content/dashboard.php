@@ -88,7 +88,7 @@ echo renderAccountPageHeader(array("#SITE_ROOT#" => SITE_ROOT, "#SITE_TITLE#" =>
   
   <?php if(PermissionValidators::isLoggedInUserInGroup(3))  { ?>  
                   <div class="text-left"><br/>
-                  <a href="http://www.c-dev.ch/sdm_downloads/geomaps-2-pro/">GeoMaps Pro 2.0.0 BETA Greasemonkey Script Download <i class="fa fa-arrow-circle-right"></i></a><br/>
+                  <a href="http://www.c-dev.ch/sdm_downloads/geomaps-2-pro/">GeoMaps Pro 2.0.1 BETA Greasemonkey Script Download <i class="fa fa-arrow-circle-right"></i></a><br/>
                   Für den Download das Passwort verwenden: <b>testGeoMP2b</b>
                   <p>Der Download des Scripts und das Passwort sind persönlich und dürfen nicht weitergegeben werden!</p>
                 </div>  
@@ -122,9 +122,14 @@ echo renderAccountPageHeader(array("#SITE_ROOT#" => SITE_ROOT, "#SITE_TITLE#" =>
               <div class="panel-heading">
                 <h3 class="panel-title">Versionshistory</h3>
               </div>
-              <div class="panel-body">            	
+              <div class="panel-body">
+                     	<br/>
+                                      	<b>v. 2.0.1</b> (08.06.2015)<br/>
+                                        <ul class="list-group">
+                        								  <li class="list-group-item">Bugfix: alle Koordinaten eines Cache-Listings werden erkannt und in den Planner aufgenommen</li>
+                        								</ul>
                 <br/>
-              	<b>v. 2.0.0</b>(19.05.2015)<br/>
+              	<b>v. 2.0.0</b> (19.05.2015)<br/>
                 <ul class="list-group">
 								  <li class="list-group-item">GeoMaps Planner arbeitet mit GeoMaps PopUp auf geocaching.com zusammen</li>
 								  <li class="list-group-item">Koordinaten erstellen, bearbeiten und löschen</li>								  
