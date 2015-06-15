@@ -377,7 +377,7 @@ var projExpandet = false;
 var currentUserSettings;
 var setupExpandet = false;
 var cacheCoordinate = el_cacheCoordinate.text(); // Cache-Info Bereich Startkoordinaten-String
-var hasCorrectedCoordinates = false;
+var ExtendCacheInfo = false;
 var pinned = false;
 
 var mapLinks=new Array();
@@ -1223,7 +1223,7 @@ function RequestGoogleMap(startPoint, targetPoint) {
 function ParseDeg(degString) {
     // parse coord from format = DD°MM.MMMM (Deg)
     var myPattern = new RegExp(degRegExp);
-    var match = myPattern.exec(degString.toString());
+    var match = myPattern.exec(degStringre));
     if (degString.match(degRegExp)) {
         var coords = new Coords(new LatLon(Geo.parseDMS(match[1]), Geo.parseDMS(match[6])));
         return coords;
