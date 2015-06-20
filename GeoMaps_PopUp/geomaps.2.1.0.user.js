@@ -1,40 +1,48 @@
 // ==UserScript==
+
 // @name		GeoMaps
 // @namespace	http://www.c-dev.ch/
-// @version 	2.0.1
-// @date	 	08.06.2015
+// @version 	2.1.0
+// @date	 	14.06.2015
 // @author		neisgei
 // @description	GeoMaps - Karten und Koordinaten umrechnen
 // @run-at      document-end
+//
 // @include		http://localhost*
 // @include		http://www.geocaching.com/*
 // @include     https://www.geocaching.com/*
+//
 // @exclude     http://www.geocaching.com/map/*
 // @exclude     http://www.geocaching.com/seek/sendtogps.aspx*
-// @exclude     http://localhost/GeoMapsWeb/GeoMapsPlanner.php
-// @require		http://gcxxxxx.appspot.com/static/jquery-gm-1.4.2.min.js
-// @require		http://cloud.github.com/downloads/enriquez/ezpz-tooltip/jquery.ezpz_tooltip.js
+//
+// @require		http://www.c-dev.ch/geocaching/greasemonkey/geomaps/2.0/jquery-gm-1.4.2.min.js
 // @require		http://www.c-dev.ch/geocaching/greasemonkey/geomaps/2.0/jquery-ui-1.8.5.custom.min.js
+// @require		http://www.c-dev.ch/geocaching/greasemonkey/geomaps/2.0/jquery.ezpz_tooltip.js
+//
 // @require		http://www.c-dev.ch/geocaching/greasemonkey/geomaps/2.0/geo.js
 // @require		http://www.c-dev.ch/geocaching/greasemonkey/geomaps/2.0/latlon.js
 // @require		http://www.c-dev.ch/geocaching/greasemonkey/geomaps/2.0/wgs84_ch1903.js
 // @require		http://www.c-dev.ch/geocaching/greasemonkey/geomaps/2.0/core.js
 // @require		http://www.c-dev.ch/geocaching/greasemonkey/geomaps/2.0/language.js
-// @grant       GM_getValue
-// @grant       GM_setValue
-// @grant				GM_deleteValue
-// @grant				GM_xmlhttpRequest
-// @grant				GM_openInTab
-// @grant				GM_registerMenuCommand
-// @grant				GM_listValues
-// @grant 			GM_getResourceURL
-// @resource home 		http://www.c-dev.ch/geocaching/greasemonkey/geomaps/2.0/images/home.png
-// @resource float 		http://www.c-dev.ch/geocaching/greasemonkey/geomaps/2.0/images/float.png
-// @resource pinned 	http://www.c-dev.ch/geocaching/greasemonkey/geomaps/2.0/images/pinned.png
-// @resource dist 		http://www.c-dev.ch/geocaching/greasemonkey/geomaps/2.0/images/dist.png
-// @resource proj 		http://www.c-dev.ch/geocaching/greasemonkey/geomaps/2.0/images/proj.png
-// @resource close 		http://www.c-dev.ch/geocaching/greasemonkey/geomaps/2.0/images/close.png
-// @resource setting 	http://www.c-dev.ch/geocaching/greasemonkey/geomaps/2.0/images/setting.png
+// @require		http://www.c-dev.ch/geocaching/greasemonkey/geomaps/2.0/usersettings.js
+// @require		http://www.c-dev.ch/geocaching/greasemonkey/geomaps/2.0/GeoMaps_PopUp.js
+//
+// @grant GM_getValue
+// @grant GM_setValue
+// @grant GM_deleteValue
+// @grant GM_xmlhttpRequest
+// @grant GM_openInTab
+// @grant GM_registerMenuCommand
+// @grant GM_listValues
+// @grant GM_getResourceURL
+//
+// @resource home 		        http://www.c-dev.ch/geocaching/greasemonkey/geomaps/2.0/images/home.png
+// @resource float 		        http://www.c-dev.ch/geocaching/greasemonkey/geomaps/2.0/images/float.png
+// @resource pinned 	        http://www.c-dev.ch/geocaching/greasemonkey/geomaps/2.0/images/pinned.png
+// @resource dist 		        http://www.c-dev.ch/geocaching/greasemonkey/geomaps/2.0/images/dist.png
+// @resource proj 		        http://www.c-dev.ch/geocaching/greasemonkey/geomaps/2.0/images/proj.png
+// @resource close 		        http://www.c-dev.ch/geocaching/greasemonkey/geomaps/2.0/images/close.png
+// @resource setting 	        http://www.c-dev.ch/geocaching/greasemonkey/geomaps/2.0/images/setting.png
 // @resource outdooractivemap 	http://www.c-dev.ch/geocaching/greasemonkey/geomaps/2.0/images/outdooractivemap.png
 
 // ==/UserScript==
@@ -57,13 +65,11 @@
  *****************************************************************************/
 
 if (window.top != window.self) { return; } //don't run on frames or iframes
-
 $ = jQuery.noConflict(true);
 
 var appName = "GeoMaps";
-
-var versionsNummer = '2.0.1 BETA';
-GM_setValue('SUC_current_version', 20001);
+var versionsNummer = '2.1.0 BETA';
+GM_setValue('SUC_current_version', 20100);
 
 var projektHomepage = 'http://www.c-dev.ch/geomaps';
 var donationLink = 'http://www.c-dev.ch/geomaps';
@@ -376,7 +382,7 @@ var projExpandet = false;
 var currentUserSettings;
 var setupExpandet = false;
 var cacheCoordinate = el_cacheCoordinate.text(); // Cache-Info Bereich Startkoordinaten-String
-var hasCorrectedCoordinates = false;
+var ExtendCacheInfo = false;
 var pinned = false;
 
 var mapLinks=new Array();
@@ -408,7 +414,7 @@ $(document).ready(
 
         ParsePageCoords();
         InsertCalculator(el_widgetBox);
-        InsertCoordsPopups();
+        // InsertCoordsPopups();
         ExtendCacheInfo(el_cacheInfoArea);
 
         $('#' + elc_sidePop).mousemove(function() {
@@ -1222,7 +1228,7 @@ function RequestGoogleMap(startPoint, targetPoint) {
 function ParseDeg(degString) {
     // parse coord from format = DD°MM.MMMM (Deg)
     var myPattern = new RegExp(degRegExp);
-    var match = myPattern.exec(degString.toString());
+    var match = myPattern.exec(degStringre));
     if (degString.match(degRegExp)) {
         var coords = new Coords(new LatLon(Geo.parseDMS(match[1]), Geo.parseDMS(match[6])));
         return coords;

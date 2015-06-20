@@ -28,3 +28,17 @@ function UserSettings() {
         this.Language=0;
     };
 };
+UserSettings.prototype.Save = function () {
+    GM_setValue('UserSettings', JSON.stringify(this.OptionList));
+};
+UserSettings.Load = function() {
+    tmpUserSettings = new UserSettings();
+    if (GM_getValue('UserSettings') != undefined) {
+        tmpUserSettings.OptionList = JSON.parse(GM_getValue('UserSettings'));
+    }
+    return tmpUserSettings;
+};
+UserSettings.Delete = function() {
+    GM_deleteValue("UserSettings");
+    GM_setValue('SUC_last_update', -86400000);
+};
