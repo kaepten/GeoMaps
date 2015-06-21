@@ -16,7 +16,7 @@ String.prototype.trim = function () {
 
 var Core = {
     LogOut : function(text) {
-        console.log(text);
+        // console.log(text);
     },
 		UpdateScript : function(){						
 			try

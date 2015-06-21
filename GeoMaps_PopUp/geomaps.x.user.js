@@ -29,39 +29,60 @@
 //
 // ==/UserScript==
 
-
-//region Geocaching.com Seitenelemente, evtl. Änderungen unterworfen
-
-
-
-//endregion
-
 if (window.top != window.self) { return; } //don't run on frames or iframes
 $ = jQuery.noConflict(true);
 
-var currentUserSettings;
-
 // region UserSettings load, save delete
+
+function UserSettings() {
+    this.OptionList = new Options();
+    function Options() {
+        this.HighlightCoordinate = true;
+        this.HighlightCoordinateMaster = true;
+        this.SendTo = true;
+        this.CacheInfoHideUMT = true;
+        this.CacheInfoHideOther = true;
+        this.MapGoogle = true;
+        this.MapTopoDe = true;
+        this.MapMapGeoAdmin = true;
+        this.MapMapPlus = true;
+        this.MapMapSearch = true;
+        this.MapGeocaching = true;
+        this.Format1 = '[deg.lat.p] [deg.lat.d]° [deg.lat.mv].[deg.lat.mn:3]\u2032 [deg.lon.p] [deg.lon.d]° [deg.lon.mv].[deg.lon.mn:3]\u2032';
+        this.Format2 = '[swi.x:0-3] [swi.x:3-6] / [swi.y:0-3] [swi.y:3-6]';
+        this.Format3 = '[dec.lat.p] [dec.lat.v].[dec.lat.n:6]° [dec.lon.p] [dec.lon.v].[dec.lon.n:6]°';
+        this.Format4 = '[dms.lat.p] [dms.lat.d]° [dms.lat.m]\u2032[dms.lat.s].[dms.lat.z:2]\u2033 [dms.lon.p] [dms.lon.d]° [dms.lon.m]\u2032[dms.lon.s].[dms.lon.z:2]\u2033';
+        this.Format1Show = false;
+        this.Format2Show = true;
+        this.Format3Show = true;
+        this.Format4Show = true;
+        this.CalculatorAsSidePop = true; // true = default, false = sidebox
+        this.SelectClickMap = 0;
+        this.Position=10;
+        this.Language=0;
+    };
+};
 
 UserSettings.prototype.Save = function () {
     GM_setValue('UserSettings', JSON.stringify(this.OptionList));
 };
 
-UserSettings.Load = function() {
-    tmpUserSettings = new UserSettings();
+UserSettings.prototype.Load = function() {
+    var tmpUserSettings = new UserSettings();
     if (GM_getValue('UserSettings') != undefined) {
         tmpUserSettings.OptionList = JSON.parse(GM_getValue('UserSettings'));
     }
-    // Core.LogOut(JSON.stringify(tmpUserSettings));
+    Core.LogOut(JSON.stringify(tmpUserSettings));
     return tmpUserSettings;
 };
 
-UserSettings.Delete = function() {
+UserSettings.prototype.Delete = function() {
     GM_deleteValue("UserSettings");
     GM_setValue('SUC_last_update', -86400000);
 };
 
-currentUserSettings = UserSettings.Load();
+var currentUserSettings = new UserSettings();
+currentUserSettings.Load();
 
 //endregion
 
@@ -75,7 +96,7 @@ function ExtendLocationDataDiv(insertElement) {
     if (currentUserSettings.OptionList.CacheInfoHideOther) $('#ctl00_ContentBody_lnkConversions').remove();
 
     try {
-        // Core.LogOut(cacheCoordinate.text());
+        Core.LogOut(cacheCoordinate.text());
         Core.LogOut(Geo.parseDMS(cacheCoordinate.text()));
 
 
@@ -99,11 +120,9 @@ function ExtendLocationDataDiv(insertElement) {
     }
 }
 
-
 $(document).ready(
     function() {
         ExtendLocationDataDiv();
-
     }
 );
 
