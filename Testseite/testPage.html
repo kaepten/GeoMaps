@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
 
+    <link rel="stylesheet" type="text/css" href="../GeoMaps_PopUp/tooltipster.css" />
+
     <script type="text/javascript" src="../GeoMaps_PopUp/jquery-1.11.3.min.js" ></script>
+
+    <script type="text/javascript" src="../GeoMaps_PopUp/jquery.tooltipster.js" ></script>
+    <script type="text/javascript" src="../GeoMaps_PopUp/jqueryezpz_tooltip.js" ></script>
+
     <script type="text/javascript" src="../GeoMaps_PopUp/geo.js"></script>
     <script type="text/javascript" src="../GeoMaps_PopUp/latlon.js"></script>
     <script type="text/javascript" src="../GeoMaps_PopUp/latlon.js"></script>
@@ -11,14 +17,28 @@
     <script type="text/javascript" src="../GeoMaps_PopUp/core.js"></script>
     <script type="text/javascript" src="../GeoMaps_PopUp/language.js"></script>
     <script type="text/javascript" src="../GeoMaps_PopUp/usersettings.js" ></script>
-    <script type="text/javascript" src="../GeoMaps_PopUp/jquery.ezpz_tooltip.js" ></script>
     <script type="text/javascript" src="../GeoMaps_PopUp/coordParser.js" ></script>
+
     <script type="text/javascript" src="../GeoMaps_PopUp/GeoMaps_PopUp.js" ></script>
 
-    <title></title>
+    <script>
+        $(document).ready(function() {
+            $('.tooltipTest').tooltipster({content: $('<span><strong>Das wird dann spannend hier</strong></span>'),
+                interactive: true,
+                delay: 0,
+                position: 'right'});
+        });
+    </script>
+
 </head>
 <body>
+<p>
 
+<span class="tooltipTest" title="This is my div's tooltip message!">
+    This div has a tooltip when you hover over it!
+</span>
+
+</p>
 
 <p class="NoBottomSpacing">
     <a href="#" class="edit-cache-coordinates" id="uxLatLonLink" title="Correct these coordinates">
@@ -126,10 +146,6 @@ Ich wünsche eine ebenso prächtige Wanderung, wie ich sie am 12. und am 14. Mai
 <br>
 Eltitas<br>
 <br></span>
-
-
-
-
 
 </body>
 </html>

@@ -163,6 +163,7 @@ function ParsePageCoords() {
     }
 
     $('.' + elc_coordPopUp + '-target').ezpz_tooltip({
+        // contentPosition: 'rightStatic',
         stayOnContent: true,
         offset:-10
     }); // configuration of pop-up

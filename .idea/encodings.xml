@@ -3,5 +3,6 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/GeoMaps_PopUp/GeoMaps_PopUp.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/GeoMaps_PopUp/coordParser.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/GeoMaps_PopUp/jquery-1.11.3.min.js" charset="UTF-8" />
   </component>
 </project>
